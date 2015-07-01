@@ -4,6 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="data/data.js"></script>
     <style>
       a {
         font-family: arial;
@@ -17,8 +18,8 @@
     </style>
   </head>
   <body ng-app="fa" ng-controller="faController" >
-    <input ng-model="icon"></input>
-    <input id="sizePicker" ng-keydown="test($event)" ng-model="size"></input>
+    <input class="typeahead" ng-model="icon"></input>
+    <input id="sizePicker" ng-keydown="handleKeyPress($event)" ng-model="size"></input>
     <input type="color" value="#ffffff" ng-model="background" ></input>
     <input type="color" value="#000000" ng-model="color" ></input>
     <br><a target="_new" href="http://fortawesome.github.io/Font-Awesome/icons/">List of all Icons</a>
@@ -27,11 +28,12 @@
     
     <script>
       angular.module('fa', []).controller('faController',['$scope', function($scope){
+        
         $scope.icon = "area-chart";
         $scope.size = 1;
         $scope.color = "#000000";
         $scope.background = "#ffffff";
-        $scope.test = function(event) {
+        $scope.handleKeyPress = function(event) {
           if(event.keyCode == 38) {
             event.preventDefault();
             $scope.size++;
