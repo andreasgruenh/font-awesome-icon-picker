@@ -15,6 +15,16 @@
         margin:30px;
         padding:20px;
       }
+      #iconPicker {
+        width:250px;
+        border:1px solid grey;
+        overflow:auto;
+        height:400px;
+      }
+      #iconPicker i {
+        margin:10px;
+        font-size: 20px;
+      }
     </style>
   </head>
   <body ng-app="fa" ng-controller="faController" >
@@ -22,17 +32,22 @@
     <input id="sizePicker" ng-keydown="handleKeyPress($event)" ng-model="size"></input>
     <input type="color" value="#ffffff" ng-model="background" ></input>
     <input type="color" value="#000000" ng-model="color" ></input>
-    <br><a target="_new" href="http://fortawesome.github.io/Font-Awesome/icons/">List of all Icons</a>
+    <br>
+    <div id="iconPicker" ng-show="showIcons"><i ng-repeat="smallIcon in DATA" ng-click="setIcon(smallIcon)" class="fa fa-{{smallIcon}}" title="{{smallIcon}}"></i></div>
+    <br><button ng-click="toggleIcons()">Show all Icons</button>
+    <a target="_new" href="http://fortawesome.github.io/Font-Awesome/icons/">List of all Icons</a>
     <br>
     <div id="font" style="font-size:{{20*size}}px; background-color:{{background}}; color:{{color}};"><i class="fa fa-{{icon}}"></i></div>
     
     <script>
       angular.module('fa', []).controller('faController',['$scope', function($scope){
         
+        $scope.DATA = DATA;
         $scope.icon = "area-chart";
         $scope.size = 1;
         $scope.color = "#000000";
         $scope.background = "#ffffff";
+        $scope.showIcons = false;
         $scope.handleKeyPress = function(event) {
           if(event.keyCode == 38) {
             event.preventDefault();
@@ -42,6 +57,15 @@
             event.preventDefault();
             $scope.size--;
           }
+        }
+        
+        $scope.toggleIcons = function() {
+          $scope.showIcons = !$scope.showIcons;
+        }
+        
+        $scope.setIcon = function(smallIcon) {
+          $scope.toggleIcons();
+          $scope.icon = smallIcon;
         }
       }]);
     </script>
