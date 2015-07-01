@@ -23,11 +23,11 @@
     <input type="color" value="#000000" ng-model="color" ></input>
     <br><a target="_new" href="http://fortawesome.github.io/Font-Awesome/icons/">List of all Icons</a>
     <br>
-    <div id="font" style="font-size:{{20*size}}px; background-color:{{background}}; color:{{color}};"><i class="fa {{icon}}"></i></div>
+    <div id="font" style="font-size:{{20*size}}px; background-color:{{background}}; color:{{color}};"><i class="fa fa-{{icon}}"></i></div>
     
     <script>
       angular.module('fa', []).controller('faController',['$scope', function($scope){
-        $scope.icon = "fa-area-chart";
+        $scope.icon = "area-chart";
         $scope.size = 1;
         $scope.color = "#000000";
         $scope.background = "#ffffff";
